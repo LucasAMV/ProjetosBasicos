@@ -206,8 +206,6 @@ Alterações no SO para JBoss habilitar memória de debug para jvm
 /proc/sys/vm/nr_hugepages de 0 para 1536
 sudo echo 1536 > /proc/sys/vm/nr_hugepages
 
-#3465A4
-
 ################################################################################
 
 Committer: Lucas Adriano de Matos Vilhagra <lucas@pop-os.localdomain>
