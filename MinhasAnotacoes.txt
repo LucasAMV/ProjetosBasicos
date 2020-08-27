@@ -181,6 +181,10 @@ java11 -Dspring.profiles.active=dev -jar cartao-0.0.1-SNAPSHOT.jar
 
 https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+docker ps -a
+docker start [nome da imagem]
+
+docker stop docker_rabbitmq_1; docker stop docker_gateway_1; docker stop docker_frontend_1; docker stop docker_discovery_1;
 
 ################################################################################
 
@@ -227,4 +231,8 @@ Criar função construirDeploy
 lucas@pop-os:~/Dev/Docker$ function fconstruirDeploy {
 > echo "Clean"; mvn clean -q; echo "Compile"; mvn compile -T 4 -q -DskipTests; echo "Package"; mvn package -q -T 4 -DskipTests -P jcr-storage,nexus-tjmt-releases,TJMTDEV,UseEhCache; echo "Fim"
 > }
+
+################################################################################
+
+
 
