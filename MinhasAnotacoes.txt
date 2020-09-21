@@ -86,6 +86,31 @@ mvn org.apache.maven.plugins:maven-install-plugin:3.0.0-M1:install-file -Dfile=C
 
 mvn install:install-file -Dfile=ICPBravo-1.30.jar -DgroupId=br.com.oaks.ICPBravo -DartifactId=ICPBravo -Dversion=1.30 -Dpackaging=jar -DgeneratePom=true
 
+--Skip Test Compilation
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>3.7.0</version>
+	<configuration>
+		<source>1.8</source>
+		<target>1.8</target>
+		<compilerArgument>-Xlint:sunapi</compilerArgument>
+		<compilerArgument>-XDenableSunApiLintControl</compilerArgument>
+	</configuration>
+	<executions>
+		<execution>
+			<id>default-testCompile</id>
+			<phase>test-compile</phase>
+			<goals>
+				<goal>testCompile</goal>
+			</goals>
+			<configuration>
+				<skip>true</skip>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+
 ###############################################################################
 #JBoss AS 7 Hotdeploy
 Server Behavior
@@ -184,7 +209,8 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 docker ps -a
 docker start [nome da imagem]
 
-docker stop docker_rabbitmq_1; docker stop docker_gateway_1; docker stop docker_frontend_1; docker stop docker_discovery_1;
+sudo docker start docker_frontend_1; sudo docker start docker_gateway_1; sudo docker start docker_rabbitmq_1; sudo docker start docker_discovery_1;
+sudo docker stop docker_rabbitmq_1; sudo docker stop docker_gateway_1; sudo docker stop docker_frontend_1; sudo docker stop docker_discovery_1;
 
 ################################################################################
 
@@ -234,5 +260,37 @@ lucas@pop-os:~/Dev/Docker$ function fconstruirDeploy {
 
 ################################################################################
 
+#https://www.jamescoyle.net/how-to/943-create-a-ram-disk-in-linux
+sudo mount -t tmpfs -o size=1256m tmpfs /mnt/ramdiskPje
+sudo mount -t tmpfs -o size=1024m tmpfs /mnt/ramdiskJboss
 
+sudo umount -l -v /mnt/ramdiskPje
+
+clear; rm -r -d /mnt/ramdiskJboss/*; jbb; ./standalone.sh -c standalone1g.xml -Djboss.server.temp.dir=/mnt/ramdiskJboss/tmp/server -Djboss.controller.temp.dir=/mnt/ramdiskJboss/tmp/controller -Djboss.domain.log.dir=/mnt/ramdiskJboss/log -Djboss.server.data.dir=/mnt/ramdiskJboss/data -Djboss.domain.deployment.dir=/mnt/ramdiskJboss/deployments --debug 8787
+clear; rm -r -d /mnt/ramdiskJboss/*; jbb; ./standalone.sh -c standalone2g.xml -Djboss.server.temp.dir=/mnt/ramdiskJboss/tmp/server -Djboss.controller.temp.dir=/mnt/ramdiskJboss/tmp/controller -Djboss.domain.log.dir=/mnt/ramdiskJboss/log -Djboss.server.data.dir=/mnt/ramdiskJboss/data -Djboss.domain.deployment.dir=/mnt/ramdiskJboss/deployments --debug 8787
+
+<jms-queue name="PJeEventsQueue" entries="java:/queue/PJeEventsQueue"/>
+
+################################################################################
+Warsaw
+Confirme se o módulo de segurança da Caixa está funcional, com o comando abaixo;
+ps -ef | grep warsaw
+
+sudo systemctl stop warsaw
+sudo systemctl disable warsaw
+
+sudo systemctl enable warsaw
+sudo systemctl start warsaw
+
+sudo apt-get remove warsaw
+
+################################################################################
+
+Não tá subindo o projeto?? D:
+
+Docker up?
+Executou o sudo echo 1536 > /proc/sys/vm/nr_hugepages;
+Adicionou o pjeEventsQueue no standalone.xml?
+Verificar o base.host no pom
+Deu meia lua pra tŕas e mortal carpado pra frente?
 
