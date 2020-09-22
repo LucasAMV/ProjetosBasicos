@@ -294,3 +294,55 @@ Adicionou o pjeEventsQueue no standalone.xml?
 Verificar o base.host no pom
 Deu meia lua pra tŕas e mortal carpado pra frente?
 
+################################################################################
+
+Criar minhas variáveis do sistema:
+Gerar o arquivo /etc/profiel.d/ambiente.sh
+Conteúdo:
+export JAVA_HOME=/home/lucas/Dev/Java/JDK/jdk1.8.0_261_64bits
+export PATH=$PATH:$JAVA_HOME/bin
+
+export M2_HOME=/home/lucas/Dev/Maven-3.6.3
+export PATH=$PATH:$M2_HOME/bin
+
+################################################################################
+
+.bashrc
+fconstruirDeploy() {
+	echo "Clean"
+	mvn clean -q
+	echo "Compile"
+	mvn compile -T 2C -DskipTests
+	echo "Package"
+	mvn package -T 2C -DskipTests -Dmaven.javadoc.skip=true -P jcr-storage,nexus-tjmt-releases,TJMTDEV
+	echo "Fim"
+}
+
+################################################################################
+BACKUP DOS MEUS ALIAS
+
+#VPN
+alias pingvpns='ping 200.251.57.130 -i 0.2 -c 4; ping 179.252.121.130 -i 0.2 -c 4'
+alias convpntjmt1='snx -s 200.251.57.130  -u 42808'
+alias convpntjmt2='snx -s 179.252.121.130 -u 42808'
+alias descvpn='snx -d'
+
+#Git
+alias gt='git status'
+alias gf='git fetch'
+alias gfs='git fetch; git status'
+
+#cd
+alias jbb='cd /home/lucas/Dev/Servidores/jboss-eap-7.1/bin'
+alias pje='cd /home/lucas/Dev/Git/pje'
+
+alias construirDeploy='echo "Clean"; mvn clean -q; echo "Compile"; mvn compile -T 4 -q -DskipTests; echo "Package"; mvn package -q -T 4 -DskipTests -P jcr-storage,nexus-tjmt-releases,TJMTDEV,UseEhCache; echo "Fim";'
+
+alias dockerStart='sudo docker start docker_frontend_1; sudo docker start docker_gateway_1; sudo docker start docker_rabbitmq_1; sudo docker start docker_discovery_1;'
+alias dockerStop='sudo docker stop docker_rabbitmq_1; sudo docker stop docker_gateway_1; sudo docker stop docker_frontend_1; sudo docker stop docker_discovery_1;'
+
+alias jbb1='clear; rm -r -d /mnt/ramdiskJboss/*; jbb; ./standalone.sh -c standalone1g.xml -Djboss.server.temp.dir=/mnt/ramdiskJboss/tmp/server -Djboss.controller.temp.dir=/mnt/ramdiskJboss/tmp/controller -Djboss.domain.log.dir=/mnt/ramdiskJboss/log -Djboss.server.data.dir=/mnt/ramdiskJboss/data -Djboss.domain.deployment.dir=/mnt/ramdiskJboss/deployments --debug 8787;'
+alias jbb2='clear; rm -r -d /mnt/ramdiskJboss/*; jbb; ./standalone.sh -c standalone2g.xml -Djboss.server.temp.dir=/mnt/ramdiskJboss/tmp/server -Djboss.controller.temp.dir=/mnt/ramdiskJboss/tmp/controller -Djboss.domain.log.dir=/mnt/ramdiskJboss/log -Djboss.server.data.dir=/mnt/ramdiskJboss/data -Djboss.domain.deployment.dir=/mnt/ramdiskJboss/deployments --debug 8787;'
+################################################################################
+
+
