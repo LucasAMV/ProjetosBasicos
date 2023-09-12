@@ -252,6 +252,20 @@ After doing this, you may fix the identity used for this commit with:
     git commit --amend --reset-author
     
 ################################################################################
+
+#Git set user name
+git config --local user.name "joao da silva"
+
+# Check
+git config --local user.name
+
+#Git set user email
+git config --local user.email "asdf@gmail.com"
+
+# Check
+git config --local user.email
+
+################################################################################
 Criar função construirDeploy
     
 lucas@pop-os:~/Dev/Docker$ function fconstruirDeploy {
