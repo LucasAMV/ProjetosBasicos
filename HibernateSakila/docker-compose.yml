@@ -34,7 +34,7 @@ services:
     ports:
       - 5432:5432
 
-  sakila-hibernate: # docker compose up sakila-hibernate
+  sakila-hibernate: # docker compose up pagila sakila-hibernate
     image: sakila-hibernate:local
     container_name: sakila-hibernate
     expose:
