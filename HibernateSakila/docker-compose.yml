@@ -1,0 +1,55 @@
+### https://github.com/devrimgunduz/pagila/blob/master/docker-compose.yml
+volumes:
+  pgdata:
+
+services:
+  sakila-hibernate-maven-build: # docker compose run --rm sakila-hibernate-maven-build
+    image: maven:3.9-amazoncorretto-8-debian
+    container_name: mvn-tmp
+    command: mvn clean package
+    working_dir: /usr/src/mymaven
+    network_mode: host
+    volumes:
+      - ./:/usr/src/mymaven
+      - $HOME/.m2:/root/.m2
+
+  sakila-hibernate-docker-build: # docker compose build sakila-hibernate-docker-build
+    image: sakila-hibernate:local
+    build:
+      context: .
+      target: runtime
+
+  pagila:
+    image: postgres:13.2
+    container_name: pagila
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+    volumes:
+      - ./pagila/pagila-schema.sql:/docker-entrypoint-initdb.d/1-pagila-schema.sql
+      - ./pagila/pagila-data.sql:/docker-entrypoint-initdb.d/2-pagila-data.sql
+      - pgdata:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+
+  sakila-hibernate: # docker compose up sakila-hibernate
+    image: sakila-hibernate:local
+    container_name: sakila-hibernate
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    depends_on:
+      - pagila
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
