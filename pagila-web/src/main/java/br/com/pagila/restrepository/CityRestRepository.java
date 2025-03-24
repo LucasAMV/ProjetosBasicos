@@ -1,4 +1,4 @@
-package br.com.pagila.repository;
+package br.com.pagila.restrepository;
 
 import br.com.pagila.entidades.City;
 import org.springframework.data.jpa.repository.JpaRepository;

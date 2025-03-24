@@ -1,4 +1,4 @@
-package br.com.pagila.repository;
+package br.com.pagila.restrepository;
 
 import br.com.pagila.entidades.Actor;
 import org.springframework.data.jpa.repository.JpaRepository;
