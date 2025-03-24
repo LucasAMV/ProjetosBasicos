@@ -27,8 +27,8 @@ public class ActorController {
         return actor.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
     
-    @GetMapping("/all")
-    public ResponseEntity<List<Actor>> getAllCities() {
+    @GetMapping
+    public ResponseEntity<List<Actor>> getAllActors() {
         List<Actor> actors = this.actorDAO.findAll();
         return ResponseEntity.ok(actors);
     }

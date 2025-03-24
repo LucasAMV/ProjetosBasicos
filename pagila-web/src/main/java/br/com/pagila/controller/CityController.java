@@ -27,7 +27,7 @@ public class CityController {
         return city.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<City>> getAllCities() {
         List<City> cities = this.cityDAO.findAll();
         return ResponseEntity.ok(cities);
