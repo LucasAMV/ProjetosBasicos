@@ -23,8 +23,8 @@ services:
     image: postgres:13.2
     container_name: pagila
     environment:
-      POSTGRES_PASSWORD: 123456
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
     volumes:
       - ./pagila/pagila-schema.sql:/docker-entrypoint-initdb.d/1-pagila-schema.sql
       - ./pagila/pagila-data.sql:/docker-entrypoint-initdb.d/2-pagila-data.sql
@@ -32,7 +32,7 @@ services:
     expose:
       - 5432
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   sakila-hibernate: # docker compose up pagila sakila-hibernate
     image: sakila-hibernate:local
