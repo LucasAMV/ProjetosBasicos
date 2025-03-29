@@ -1,6 +1,6 @@
-package br.com.pagila.dao;
+package br.com.pagila.business.dao;
 
-import br.com.pagila.entidades.City;
+import br.com.pagila.business.entidades.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

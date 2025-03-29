@@ -1,4 +1,4 @@
-package br.com.pagila.entidades;
+package br.com.pagila.business.entidades;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,13 +7,13 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "language")
+public class Language {
     @Id
-    @Column(name = "category_id", nullable = false)
+    @Column(name = "language_id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 25)
+    @Column(name = "name", nullable = false, length = 20, columnDefinition = "bpchar")
     private String name;
 
     @Column(name = "last_update", nullable = false)

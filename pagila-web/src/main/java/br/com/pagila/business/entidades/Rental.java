@@ -1,4 +1,4 @@
-package br.com.pagila.entidades;
+package br.com.pagila.business.entidades;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

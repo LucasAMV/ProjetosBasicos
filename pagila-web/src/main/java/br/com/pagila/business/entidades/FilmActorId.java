@@ -1,4 +1,4 @@
-package br.com.pagila.entidades;
+package br.com.pagila.business.entidades;
 
 import jakarta.persistence.Embeddable;
 import org.hibernate.Hibernate;

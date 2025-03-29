@@ -1,26 +1,20 @@
-package br.com.pagila.controller;
+package br.com.pagila.business.controller.custom;
 
-import br.com.pagila.dao.CityDAO;
-import br.com.pagila.entidades.City;
+import br.com.pagila.business.dao.CityDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Optional;
 
 @Validated
 @RestController
 @RequestMapping("/api/city")
-public class CityController {
+public class CityCustomController {
 
     @Autowired
     CityDAO cityDAO;
 
+    /*
     @GetMapping("/{id}")
     public ResponseEntity<City> getCity(@PathVariable Integer id) {
         Optional<City> city = this.cityDAO.findById(id);
@@ -32,5 +26,5 @@ public class CityController {
         List<City> cities = this.cityDAO.findAll();
         return ResponseEntity.ok(cities);
     }
-
+    */
 }
