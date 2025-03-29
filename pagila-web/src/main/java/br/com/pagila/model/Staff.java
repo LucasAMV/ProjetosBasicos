@@ -1,4 +1,4 @@
-package br.com.pagila.business.entidades;
+package br.com.pagila.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,13 +8,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.Instant;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "customer")
-public class Customer {
+@Table(name = "staff")
+public class Staff {
     @Id
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "staff_id", nullable = false)
     private Integer id;
 
     @Column(name = "first_name", nullable = false, length = 45)
@@ -23,24 +22,27 @@ public class Customer {
     @Column(name = "last_name", nullable = false, length = 45)
     private String lastName;
 
-    @Column(name = "email", length = 50)
-    private String email;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
-    @Column(name = "activebool", nullable = false)
-    private Boolean activebool = false;
+    @Column(name = "email", length = 50)
+    private String email;
 
-    @Column(name = "create_date", nullable = false)
-    private LocalDate createDate;
+    @Column(name = "active", nullable = false)
+    private Boolean active = false;
 
-    @Column(name = "last_update")
+    @Column(name = "username", nullable = false, length = 16)
+    private String username;
+
+    @Column(name = "password", length = 40)
+    private String password;
+
+    @Column(name = "last_update", nullable = false)
     private Instant lastUpdate;
 
-    @Column(name = "active")
-    private Integer active;
+    @Column(name = "picture")
+    private byte[] picture;
 
     public Integer getId() {
         return id;
@@ -66,14 +68,6 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -82,20 +76,36 @@ public class Customer {
         this.address = address;
     }
 
-    public Boolean getActivebool() {
-        return activebool;
+    public String getEmail() {
+        return email;
     }
 
-    public void setActivebool(Boolean activebool) {
-        this.activebool = activebool;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Instant getLastUpdate() {
@@ -106,12 +116,12 @@ public class Customer {
         this.lastUpdate = lastUpdate;
     }
 
-    public Integer getActive() {
-        return active;
+    public byte[] getPicture() {
+        return picture;
     }
 
-    public void setActive(Integer active) {
-        this.active = active;
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.pagila.web.controller;
+package br.com.pagila.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

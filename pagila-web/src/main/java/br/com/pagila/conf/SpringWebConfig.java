@@ -1,4 +1,4 @@
-package br.com.pagila.web.conf;
+package br.com.pagila.conf;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

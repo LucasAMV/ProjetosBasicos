@@ -1,4 +1,4 @@
-package br.com.pagila.business.entidades;
+package br.com.pagila.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,12 +8,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "customer")
+public class Customer {
     @Id
-    @Column(name = "staff_id", nullable = false)
+    @Column(name = "customer_id", nullable = false)
     private Integer id;
 
     @Column(name = "first_name", nullable = false, length = 45)
@@ -22,27 +23,24 @@ public class Staff {
     @Column(name = "last_name", nullable = false, length = 45)
     private String lastName;
 
+    @Column(name = "email", length = 50)
+    private String email;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
-    @Column(name = "email", length = 50)
-    private String email;
+    @Column(name = "activebool", nullable = false)
+    private Boolean activebool = false;
 
-    @Column(name = "active", nullable = false)
-    private Boolean active = false;
+    @Column(name = "create_date", nullable = false)
+    private LocalDate createDate;
 
-    @Column(name = "username", nullable = false, length = 16)
-    private String username;
-
-    @Column(name = "password", length = 40)
-    private String password;
-
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     private Instant lastUpdate;
 
-    @Column(name = "picture")
-    private byte[] picture;
+    @Column(name = "active")
+    private Integer active;
 
     public Integer getId() {
         return id;
@@ -68,14 +66,6 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -84,28 +74,28 @@ public class Staff {
         this.email = email;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getUsername() {
-        return username;
+    public Boolean getActivebool() {
+        return activebool;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setActivebool(Boolean activebool) {
+        this.activebool = activebool;
     }
 
-    public String getPassword() {
-        return password;
+    public LocalDate getCreateDate() {
+        return createDate;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
     public Instant getLastUpdate() {
@@ -116,12 +106,12 @@ public class Staff {
         this.lastUpdate = lastUpdate;
     }
 
-    public byte[] getPicture() {
-        return picture;
+    public Integer getActive() {
+        return active;
     }
 
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
+    public void setActive(Integer active) {
+        this.active = active;
     }
 
 }

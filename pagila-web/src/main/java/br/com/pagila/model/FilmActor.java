@@ -1,4 +1,4 @@
-package br.com.pagila.business.entidades;
+package br.com.pagila.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -8,34 +8,41 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
-
 import java.time.Instant;
 
 @Entity
-@Table(name = "film_category")
-public class FilmCategory {
+@Table(name = "film_actor")
+public class FilmActor {
     @EmbeddedId
-    private FilmCategoryId id;
+    private FilmActorId id;
+
+    @MapsId("actorId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "actor_id", nullable = false)
+    private Actor actor;
 
     @MapsId("filmId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "film_id", nullable = false)
     private Film film;
 
-    @MapsId("categoryId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-
     @Column(name = "last_update", nullable = false)
     private Instant lastUpdate;
 
-    public FilmCategoryId getId() {
+    public FilmActorId getId() {
         return id;
     }
 
-    public void setId(FilmCategoryId id) {
+    public void setId(FilmActorId id) {
         this.id = id;
+    }
+
+    public Actor getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
     }
 
     public Film getFilm() {
@@ -44,14 +51,6 @@ public class FilmCategory {
 
     public void setFilm(Film film) {
         this.film = film;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public Instant getLastUpdate() {

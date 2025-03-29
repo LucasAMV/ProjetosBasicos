@@ -1,4 +1,4 @@
-package br.com.pagila.business.entidades;
+package br.com.pagila.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,14 +7,14 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 
 @Entity
-@Table(name = "country")
-public class Country {
+@Table(name = "category")
+public class Category {
     @Id
-    @Column(name = "country_id", nullable = false)
+    @Column(name = "category_id", nullable = false)
     private Integer id;
 
-    @Column(name = "country", nullable = false, length = 50)
-    private String country;
+    @Column(name = "name", nullable = false, length = 25)
+    private String name;
 
     @Column(name = "last_update", nullable = false)
     private Instant lastUpdate;
@@ -27,12 +27,12 @@ public class Country {
         this.id = id;
     }
 
-    public String getCountry() {
-        return country;
+    public String getName() {
+        return name;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Instant getLastUpdate() {
