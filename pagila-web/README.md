@@ -2,6 +2,17 @@
 > ```sh
 > docker compose up -d pagila pgadmin
 > ```
+> ```sh
+> docker compose stop pagila pgadmin
+> ```
+> ```sh
+> docker compose start pagila pgadmin
+> ```
+> ```sh
+> docker compose down pagila pgadmin
+> ```
+> ### pgAdmin
+> [pgAdmin - http://localhost:5050/browser/](http://localhost:5050/browser/)
 
 > ## Endpoints
 > 
