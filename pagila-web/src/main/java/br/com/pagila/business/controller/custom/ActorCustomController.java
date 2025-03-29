@@ -1,6 +1,6 @@
 package br.com.pagila.business.controller.custom;
 
-import br.com.pagila.business.dao.ActorDAO;
+import br.com.pagila.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ActorCustomController {
 
     @Autowired
-    ActorDAO actorDAO;
+    ActorRepository actorDAO;
 
     /*
     @GetMapping("/{id}")
